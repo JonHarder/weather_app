@@ -15,6 +15,9 @@ module.exports = {
       {test: /\.js$/, include: __dirname + '/app', loader: "babel-loader"}
     ]
   },
+  devServer: {
+    historyApiFallback: true
+  },
   output: {
     filename: "index_bundle.js",
     path: __dirname + '/dist'

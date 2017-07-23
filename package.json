@@ -4,7 +4,8 @@
   "description": "React Based Weather app using OpenWeatherMap",
   "main": "index.js",
   "scripts": {
-    "create": "webpack"
+    "create": "webpack",
+    "start": "webpack-dev-server --open"
   },
   "author": "Jon Harder",
   "license": "ISC",
@@ -13,7 +14,8 @@
     "babel-loader": "^7.1.1",
     "babel-preset-react": "^6.24.1",
     "html-webpack-plugin": "^2.29.0",
-    "webpack": "^3.3.0"
+    "webpack": "^3.3.0",
+    "webpack-dev-server": "^2.6.1"
   },
   "dependencies": {
     "react": "^15.6.1",
