@@ -1,4 +1,5 @@
 var React = require('react');
+var ZipCodeForm = require('./ZipCodeForm');
 
 function Content() {
   return (
@@ -6,8 +7,7 @@ function Content() {
       <h1 style={{color: 'white'}}>
         Enter a City and State
       </h1>
-      <input className='input' placeholder="Plymouth, Minnesota"></input>
-      <button style={{marginTop: '20px'}} className='btn'>Search</button>
+      <ZipCodeForm/>
     </div>
   );
 }
