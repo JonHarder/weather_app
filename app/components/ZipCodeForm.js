@@ -31,9 +31,10 @@ class ZipCodeForm extends React.Component {
       <form className='zip-code-form'>
         <input onChange={this.handleChange}
                className='input'
-               placeholder="Plymouth, Minnesota"></input>
+               placeholder="Plymouth, Minnesota"
+               value={this.state.city}></input>
         <Link className="btn" to={{
-          pathname: match.url + 'forecast',
+          pathname: '/forecast',
           search: `?city=` + city
         }}>
           Get weather
