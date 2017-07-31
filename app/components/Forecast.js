@@ -2,13 +2,23 @@ var React = require('react');
 var QueryString = require('query-string');
 
 
+function ForecastDay(props) {
+  return (
+    <div className="column">
+      {props.day}
+    </div>
+  );
+}
+
+
 class Forecast extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
       city: null,
-      weather: null
+      weather: null,
+      loading: true
     };
   }
 
@@ -16,26 +26,39 @@ class Forecast extends React.Component {
     let search = QueryString.parse(this.props.location.search);
     let city = search.city;
 
-    api.current_weather(city)
+    // api.current_weather(city)
+    api.forecast_weather(city)
       .then(resp => {
         this.setState(() => {
           return {
-            weather: resp,
-            city: city
+            days: resp.days,
+            city: resp.city,
+            loading: false
           };
         });
       });
   }
 
   render() {
+    if(this.state.loading) {
+      return <h1 className="column">Loading</h1>;
+    }
+
     return (
       <div>
-        <h1>Weather</h1>
         {this.state.city !== null &&
-          <h2>City: {this.state.weather.name}</h2>
+          <h1>{this.state.city}</h1>
         }
-        {this.state.weather !== null &&
-          <h3>Temperature: {this.state.weather.main.temp}°F</h3>
+        {this.state.days !== null &&
+          <ul>
+          {this.state.days.map((val, i) => {
+            return (
+              <li key={i}>
+                <ForecastDay day={val.dt_txt}/>
+              </li>
+            );
+          })}
+          </ul>
         }
       </div>
     );

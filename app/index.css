@@ -30,6 +30,12 @@ body {
   margin-bottom: auto;
 }
 
+.column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .content {
   background-image: url('./images/pattern.svg');
   height: 100vh;
