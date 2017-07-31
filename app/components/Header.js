@@ -1,13 +1,13 @@
 var React = require('react');
+var ZipCodeForm = require('./ZipCodeForm');
 
-class Header extends React.Component {
-  render() {
-    return (
-      <div className='nav'>
-        <h1>Clever Title</h1>
-      </div>
-    );
-  }
+function Header(props) {
+  return (
+    <div className='nav'>
+     <h1>Weather</h1>
+     <ZipCodeForm match={props.match}/>
+   </div>
+  );
 }
 
 
