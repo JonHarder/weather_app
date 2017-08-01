@@ -9,13 +9,17 @@ let weather = (endpoint, params) => {
     APPID: key,
     type: 'accurate'
   };
-  let query_params = Object.assign(default_params, params);
+  let query_params = Object.assign({}, default_params, params);
   search += endpoint + '?';
   let query_string = search + QueryString.stringify(query_params);
 
   return fetch(query_string)
     .then(resp => resp.json())
     .then(data => Promise.resolve(data));
+};
+
+Array.prototype.skip = function(nth) {
+  return this.filter((x, i) => i % nth == 0);
 };
 
 api = {
@@ -26,10 +30,9 @@ api = {
   forecast_weather: city => {
     return weather('forecast', {q: city})
       .then(data => {
-        console.log(data.list);
         return {
           city: data.city.name,
-          days: data.list
+          days: data.list.skip(8)
         };
       });
   }

@@ -3,7 +3,7 @@
 }
 
 body {
-  font-family: Ubuntu;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   height: 100%;
   margin: 0;
   padding: 0;
@@ -34,6 +34,22 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.container {
+  display: flex;
+  margin: auto;
+  width: 75%;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+
+.forecastDay {
+  padding: 20px;
+  text-align: center;
 }
 
 .content {
