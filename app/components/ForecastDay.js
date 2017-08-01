@@ -1,5 +1,4 @@
 var React = require('react');
-import { withRouter } from 'react-router-dom';
 var PropTypes = require('prop-types');
 
 

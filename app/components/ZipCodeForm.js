@@ -1,4 +1,5 @@
 var React = require('react');
+var PropTypes = require('prop-types');
 var api = require('../util/api');
 var Link = require('react-router-dom').Link;
 
@@ -21,6 +22,19 @@ class ZipCodeForm extends React.Component {
         city: value
       };
     })
+
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+    let city = this.state.city;
+    this.setState(() => {
+      return {
+        city: ''
+      }
+    });
+    this.context.router.history.push('/forecast?city=' + this.state.city);
   }
 
   render() {
@@ -28,7 +42,7 @@ class ZipCodeForm extends React.Component {
     let city = this.state.city;
 
     return (
-      <form className='zip-code-form'>
+      <form onSubmit={this.handleSubmit} className='zip-code-form'>
         <input onChange={this.handleChange}
                className='input'
                placeholder="Plymouth, Minnesota"
@@ -43,6 +57,9 @@ class ZipCodeForm extends React.Component {
     );
   }
 }
+ZipCodeForm.contextTypes = {
+  router: PropTypes.object.isRequired
+};
 
 
 module.exports = ZipCodeForm;
