@@ -2,8 +2,9 @@ var React = require('react');
 
 
 function Details(props) {
+  let city = props.match.params.city;
   return (
-    <h1>city: {props.city}</h1>
+    <h1>city: {city}</h1>
   );
 }
 

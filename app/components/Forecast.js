@@ -1,4 +1,5 @@
 var React = require('react');
+var Link = require('react-router-dom').Link;
 var QueryString = require('query-string');
 var PropTypes = require('prop-types');
 
@@ -36,7 +37,11 @@ class Forecast extends React.Component {
 
   render() {
     if(this.state.loading) {
-      return <Loading/>;
+      return (
+        <div className="content">
+          <Loading/>
+        </div>
+      );
     }
 
     return (
@@ -52,12 +57,15 @@ class Forecast extends React.Component {
             let weather = val.weather[0].description;
             return (
               <ForecastDay key={i} className="forecastDay"
-                day={day} temp={temp} weather={weather}>
+                city={this.state.city} day={day} temp={temp} weather={weather}>
              </ForecastDay>
             );
           })}
         </div>
         }
+        <div style={{textAlign: 'center'}}>
+          <Link style={{margin: 'auto'}} className="btn" to="/">Back</Link>
+        </div>
       </div>
     );
   }

@@ -42,7 +42,7 @@ class ForecastDay extends React.Component {
   }
 
   handleClick() {
-    console.log("clicked!");
+    this.context.router.history.push('/details/' + this.props.city);
   }
 
   render() {
@@ -60,9 +60,13 @@ class ForecastDay extends React.Component {
   }
 }
 ForecastDay.propTypes = {
+  city: PropTypes.string.isRequired,
   day: PropTypes.string.isRequired,
   temp: PropTypes.number.isRequired,
   weather: PropTypes.string.isRequired
+};
+ForecastDay.contextTypes = {
+  router: PropTypes.object.isRequired
 };
 
 module.exports = ForecastDay;
