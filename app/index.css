@@ -54,6 +54,8 @@ h1 {
 
 
 .forecastDay {
+  text-decoration: none;
+  color: inherit;
   padding: 20px;
   text-align: center;
 }
@@ -101,6 +103,12 @@ h1 {
 
 .vertical {
   margin-bottom: 10px;
+}
+
+.plain {
+  text-decoration: none;
+  color: white;
+  cursor: pointer;
 }
 
 .btn {

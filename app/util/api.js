@@ -22,7 +22,7 @@ Array.prototype.skip = function(nth) {
   return this.filter((x, i) => i % nth == 0);
 };
 
-api = {
+var api = {
   current_weather: city => {
     return weather('weather', {q: city});
   },

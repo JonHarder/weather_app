@@ -1,6 +1,6 @@
 var React = require('react');
-var Header = require('./Header');
 var Content = require('./Content');
+var PropTypes = require('prop-types');
 
 
 function Home(props) {
@@ -10,6 +10,9 @@ function Home(props) {
     </div>
   );
 }
+Home.propTypes = {
+  match: PropTypes.object
+};
 
 
 module.exports = Home;

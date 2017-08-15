@@ -1,10 +1,10 @@
 var React = require('react');
-var Link = require('react-router-dom').Link;
 var QueryString = require('query-string');
 var PropTypes = require('prop-types');
 
 var Loading = require('./Loading');
 var ForecastDay = require('./ForecastDay');
+var api = require('../util/api');
 
 
 class Forecast extends React.Component {
@@ -38,7 +38,7 @@ class Forecast extends React.Component {
   render() {
     if(this.state.loading) {
       return (
-        <div className="content">
+        <div className='content'>
           <Loading/>
         </div>
       );
@@ -50,25 +50,25 @@ class Forecast extends React.Component {
           <h1 style={{textAlign: 'center', fontSize: '50px'}}>{this.state.city}</h1>
         }
         {this.state.days !== null &&
-          <div className="container">
-          {this.state.days.map((val, i) => {
-            let day = val.dt_txt;
-            let temp = val.main.temp;
-            let weather = val.weather[0].description;
-            return (
-              <ForecastDay key={i} className="forecastDay"
-                city={this.state.city} day={day} temp={temp} weather={weather}>
-             </ForecastDay>
-            );
-          })}
-        </div>
+            <div className='container'>
+              {this.state.days.map((val, i) => {
+                let day = val.dt_txt;
+                let temp = val.main.temp;
+                let weather = val.weather[0].description;
+                return (
+                  <ForecastDay key={i} className='forecastDay'
+                    city={this.state.city} day={day} temp={temp} weather={weather}>
+                  </ForecastDay>
+                );
+              })}
+            </div>
         }
-        <div style={{textAlign: 'center'}}>
-          <Link style={{margin: 'auto'}} className="btn" to="/">Back</Link>
-        </div>
       </div>
     );
   }
 }
+Forecast.propTypes = {
+  location: PropTypes.object
+};
 
 module.exports = Forecast;

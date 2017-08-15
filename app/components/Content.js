@@ -1,5 +1,6 @@
 var React = require('react');
 var ZipCodeForm = require('./ZipCodeForm');
+var PropTypes = require('prop-types');
 
 function Content(props) {
   return (
@@ -11,5 +12,8 @@ function Content(props) {
     </div>
   );
 }
+Content.propTypes = {
+  match: PropTypes.object
+};
 
 module.exports = Content;

@@ -7,25 +7,25 @@ class Loading extends React.Component {
 
     this.state = {
       text: this.props.message
-    }
+    };
   }
 
   componentDidMount() {
     this.interval = setInterval(() => {
-      if(this.state.text = this.props.message + '....') {
+      if(this.state.text === this.props.message + '...') {
         this.setState(() => {
           return {
             text: this.props.message
           };
-        })
+        });
       } else {
         this.setState(oldState => {
           return {
-            text: oldState + '.'
+            text: oldState.text + '.'
           };
-        })
+        });
       }
-    }, this.props.wait)
+    }, this.props.wait);
   }
 
   componentWillUnmount() {
@@ -41,13 +41,13 @@ class Loading extends React.Component {
   }
 }
 Loading.defaultProps = {
-  wait: 50,
+  wait: 150,
   message: 'Loading'
-}
+};
 Loading.propTypes = {
   message: PropTypes.string.isRequired,
   wait: PropTypes.number.isRequired
-}
+};
 
 
 module.exports = Loading;
