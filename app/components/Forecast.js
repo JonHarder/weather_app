@@ -1,6 +1,7 @@
 var React = require('react');
 var QueryString = require('query-string');
 var PropTypes = require('prop-types');
+var Link = require('react-router-dom').Link;
 
 var Loading = require('./Loading');
 var ForecastDay = require('./ForecastDay');
@@ -53,12 +54,20 @@ class Forecast extends React.Component {
             <div className='container'>
               {this.state.days.map((val, i) => {
                 let day = val.dt_txt;
+                console.log(val);
                 let temp = val.main.temp;
                 let weather = val.weather[0].description;
                 return (
-                  <ForecastDay key={i} className='forecastDay'
-                    city={this.state.city} day={day} temp={temp} weather={weather}>
-                  </ForecastDay>
+                  <Link key={i} className='forecastDay' to={
+                    {pathname: 'details/' + this.state.city,
+                      query: {weather: weather,
+                        temp: temp,
+                        day: day}}
+                  }>
+                    <ForecastDay style={{cursor: 'pointer'}} className='forecastDay'
+                      city={this.state.city} day={day} temp={temp} weather={weather}>
+                    </ForecastDay>
+                  </Link>
                 );
               })}
             </div>

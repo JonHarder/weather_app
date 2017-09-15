@@ -1,6 +1,6 @@
 var React = require('react');
 var PropTypes = require('prop-types');
-var Link = require('react-router-dom').Link;
+var WeatherIcon = require('./WeatherIcon');
 
 
 function formatDate(date) {
@@ -14,43 +14,20 @@ function formatDate(date) {
 }
 
 
-function WeatherIcon(props) {
-  let image_src = 'cloudy.svg';
-
-  if(props.weather === 'light rain') {
-    image_src = 'rainy.svg';
-  } else if(props.weather === 'clear sky') {
-    image_src = 'sunny.svg';
-  }
-
-  if(image_src === null) {
-    return <h2>{props.weather}</h2>;
-  } else {
-    let src = require('../images/' + image_src);
-    return <img height='175' width='175' src={src} alt={props.weather}/>;
-  }
-}
-WeatherIcon.propTypes = {
-  weather: PropTypes.string.isRequired
-};
-
-
 function ForecastDay(props) {
   let day = new Date(props.day);
   return (
-    <Link className='forecastDay' to={'details/' + props.city}>
+    <div className='forecastDay'>
       <WeatherIcon weather={props.weather}/>
       <h2>{formatDate(day)}</h2>
       {props.children}
-    </Link>
+    </div>
   );
 }
 ForecastDay.propTypes = {
-  city: PropTypes.string.isRequired,
   day: PropTypes.string.isRequired,
-  temp: PropTypes.number.isRequired,
   weather: PropTypes.string.isRequired,
-  children: PropTypes.object
+  children: PropTypes.array
 };
 ForecastDay.contextTypes = {
   router: PropTypes.object.isRequired

@@ -60,10 +60,12 @@ h1 {
   text-align: center;
 }
 
+/*
 .forecastDay:hover {
   background: rgba(0, 0, 0, .15);
   cursor: pointer;
 }
+*/
 
 .content {
   background-image: url('./images/pattern.svg');

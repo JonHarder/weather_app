@@ -1,55 +1,32 @@
 var React = require('react');
-var Loading = require('./Loading');
 var PropTypes = require('prop-types');
 
+var ForecastDay = require('./ForecastDay');
 
-class Details extends React.Component {
-  constructor(props) {
-    super(props);
 
-    this.state = {
-      city: this.props.match.params.city,
-      loading: true
-    };
+var style = {
+  background: 'red'
+};
 
-    this.handleClick = this.handleClick.bind(this);
-  }
 
-  handleClick() {
-    this.setState(() => {
-      return {
-        loading: false
-      };
-    });
-  }
-
-  render() {
-    const loading = (
-      <div>
-        <Loading/>
-        <div className="btn" onClick={this.handleClick}>
-          Load
-        </div>
-      </div>
-    );
-
-    let content = null;
-
-    if(this.state.loading) {
-      content = loading;
-    } else {
-      content = <h1>City: {this.state.city}</h1>;
-    }
-
-    return (
-      <div className="column">
-        {content}
-      </div>
-    );
-  }
+function Details(props) {
+  let city = props.match.params.city;
+  let temp = props.location.query.temp;
+  let weather = props.location.query.weather;
+  let day = props.location.query.day;
+  return (
+    <div>
+      <ForecastDay style={style} day={day} weather={weather}>
+        <h1>{city}</h1>
+        <h2>{temp} degrees</h2>
+        <h2>{weather}</h2>
+      </ForecastDay>
+    </div>
+  );
 }
 Details.propTypes = {
-  match: PropTypes.object
+  match: PropTypes.object.isRequired,
+  location: PropTypes.object.isRequired
 };
 
 
